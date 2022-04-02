@@ -1,4 +1,5 @@
 ﻿using Bootcamp.API.Controllers;
+using Bootcamp.API.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bootcamp.API.Models
@@ -19,18 +20,19 @@ namespace Bootcamp.API.Models
 
 
 
-        public IActionResult GetById(int id)
+        public ResponseDto<ProductDto> GetById(int id)
         {
             var hasProduct = _respository.GetById(id);
 
-            if (hasProduct == null) return new NotFoundResult();
-            else return new OkObjectResult(hasProduct);
 
 
+            return ResponseDto<ProductDto>.Success(new ProductDto(hasProduct), 200);
 
         }
+
         public IActionResult Save(Product newProduct)
         {
+
 
 
 
@@ -40,23 +42,23 @@ namespace Bootcamp.API.Models
         }
 
 
-        public IActionResult Update(Product updateProduct)
+        public ResponseDto<NoContent> Update(Product updateProduct)
         {
 
             var hasProduct = _respository.GetById(updateProduct.Id);
 
-            if (hasProduct == null) return new NotFoundResult();
+
 
 
             _respository.Update(updateProduct);
-            return new NoContentResult();
+            return ResponseDto<NoContent>.Success(204);
 
         }
         public IActionResult Delete(int id)
         {
             var hasProduct = _respository.GetById(id);
 
-            if (hasProduct == null) return new NotFoundResult();
+
 
             _respository.Delete(id);
 

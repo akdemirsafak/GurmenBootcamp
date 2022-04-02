@@ -2,7 +2,7 @@
 {
     public class ProductRepository : IProductRepository
     {
-        Product p2 = new();
+
         private static List<Product> _products = new List<Product>()
         {
             new (){Id=1, Name="kalem 1", Price=100, Stock=200},

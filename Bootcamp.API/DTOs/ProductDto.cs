@@ -6,7 +6,7 @@ namespace Bootcamp.API.DTOs
     {
 
 
-        private string _name;
+
 
         public int Id { get; set; }
 
@@ -14,6 +14,7 @@ namespace Bootcamp.API.DTOs
 
         public decimal Price { get; set; }
 
+        public int Stock { get; set; }
         public string Color { get; set; }
         public int CategoryId { get; set; }
 

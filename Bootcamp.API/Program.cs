@@ -40,7 +40,7 @@ builder.Services.AddScoped<IDbConnection>(sp => new NpgsqlConnection(builder.Con
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
 var app = builder.Build();

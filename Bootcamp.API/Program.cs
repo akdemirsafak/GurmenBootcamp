@@ -9,6 +9,9 @@ using FluentValidation.AspNetCore;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using System.Data;
+using Npgsql;
+using Bootcamp.API.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -30,11 +33,12 @@ builder.Services.AddSwaggerGen();
 //DI Container
 builder.Services.AddScoped<NotFoundProductFilter>();
 
+
+
+builder.Services.AddScoped<IDbConnection>(sp => new NpgsqlConnection(builder.Configuration.GetConnectionString("Postgresql")));
+
+
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ProductService>();
-
-
-
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 

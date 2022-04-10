@@ -1,6 +1,7 @@
 ﻿using Bootcamp.API.DTOs;
 using Bootcamp.API.Events;
 using Bootcamp.API.Models;
+using Bootcamp.API.Repositories;
 using MediatR;
 
 namespace Bootcamp.API.Commands
@@ -18,9 +19,9 @@ namespace Bootcamp.API.Commands
 
         public Task<ResponseDto<NoContent>> Handle(ProductInsertCommand request, CancellationToken cancellationToken)
         {
-            _productRepository.Save(new Product() { Id = 20, Name = request.Name, Price = request.Price, Stock = request.Stock });
+            //_productRepository.Save(new Product() { Id = 20, Name = request.Name, Price = request.Price, Stock = request.Stock });
 
-            mediator.Publish(new ProductCreatedEvent() { ProductId = 20, ProductName = request.Name });
+            //mediator.Publish(new ProductCreatedEvent() { ProductId = 20, ProductName = request.Name });
             return Task.FromResult(ResponseDto<NoContent>.Success(201));
         }
     }

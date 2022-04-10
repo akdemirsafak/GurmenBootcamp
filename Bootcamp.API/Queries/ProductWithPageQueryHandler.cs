@@ -1,5 +1,6 @@
 ﻿using Bootcamp.API.DTOs;
 using Bootcamp.API.Models;
+using Bootcamp.API.Repositories;
 using MediatR;
 
 namespace Bootcamp.API.Queries
@@ -20,13 +21,13 @@ namespace Bootcamp.API.Queries
             // page=2 pagesize 5 ikinci 5 data  skip(5).Take(pageSize)  5
             // page=3 pagesize 5 üçüncü 5 data  skip(10).Take(pagesize) 10
 
-            var products = _productRepository.GetAll().Skip((request.Page - 1) * request.PageSize).Take(request.PageSize);
-            var productDtos = new List<ProductDto>();
-            products.ToList().ForEach(x => productDtos.Add(new ProductDto(x)));
-            return Task.FromResult(ResponseDto<List<ProductDto>>.Success(productDtos, 200));
+            //var products = _productRepository.GetAll().Skip((request.Page - 1) * request.PageSize).Take(request.PageSize);
+            //var productDtos = new List<ProductDto>();
+            //products.ToList().ForEach(x => productDtos.Add(new ProductDto(x)));
+            //return Task.FromResult(ResponseDto<List<ProductDto>>.Success(productDtos, 200));
 
 
-
+            return Task.FromResult(ResponseDto<List<ProductDto>>.Success(200));
 
         }
     }

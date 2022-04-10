@@ -1,5 +1,6 @@
 ﻿using Bootcamp.API.DTOs;
 using Bootcamp.API.Models;
+using Bootcamp.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -19,20 +20,20 @@ namespace Bootcamp.API.Filters
 
 
 
-            var idValue = context.HttpContext.Request.RouteValues["id"];
+            //var idValue = context.HttpContext.Request.RouteValues["id"];
 
 
-            int id = int.Parse(idValue.ToString());
+            //int id = int.Parse(idValue.ToString());
 
-            var hasProduct = _productRepository.GetById(id);
+            //var hasProduct = _productRepository.GetById(id);
+            await next.Invoke();
+            //if (hasProduct != null)
+            //{
+            //    await next.Invoke();
+            //    return;
+            //}
 
-            if (hasProduct != null)
-            {
-                await next.Invoke();
-                return;
-            }
-
-            context.Result = new NotFoundObjectResult(ResponseDto<NoContent>.Fail($"Id({id})'ye sahip ürün bulunamamıştır.", 404));
+            //  context.Result = new NotFoundObjectResult(ResponseDto<NoContent>.Fail($"Id({id})'ye sahip ürün bulunamamıştır.", 404));
 
 
 

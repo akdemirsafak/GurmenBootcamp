@@ -1,5 +1,6 @@
 ﻿using Bootcamp.API.DTOs;
 using Bootcamp.API.Models;
+using Bootcamp.API.Repositories;
 using MediatR;
 
 namespace Bootcamp.API.Commands
@@ -20,14 +21,14 @@ namespace Bootcamp.API.Commands
         public Task<ResponseDto<NoContent>> Handle(ProductUpdateCommmand request, CancellationToken cancellationToken)
         {
 
-            var hasProduct = _repository.GetAll().Any(x => x.Id == request.Id);
+            //var hasProduct = _repository.GetAll().Any(x => x.Id == request.Id);
 
-            if (!hasProduct)
-            {
-                return Task.FromResult(ResponseDto<NoContent>.Fail($"Güncellenecek ürün({request.Id}) bulunamamıştır."));
-            }
+            //if (!hasProduct)
+            //{
+            //    return Task.FromResult(ResponseDto<NoContent>.Fail($"Güncellenecek ürün({request.Id}) bulunamamıştır."));
+            //}
 
-            _repository.Update(new Product() { Id = request.Id, Name = request.Name, Price = request.Price, Stock = request.Stock });
+            //_repository.Update(new Product() { Id = request.Id, Name = request.Name, Price = request.Price, Stock = request.Stock });
 
 
             return Task.FromResult(ResponseDto<NoContent>.Success(204));

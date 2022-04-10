@@ -8,6 +8,7 @@ using Bootcamp.API.Middlewares;
 using FluentValidation.AspNetCore;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -31,6 +32,11 @@ builder.Services.AddScoped<NotFoundProductFilter>();
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ProductService>();
+
+
+
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
 
 
 var app = builder.Build();

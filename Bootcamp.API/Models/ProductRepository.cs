@@ -7,7 +7,10 @@
         {
             new (){Id=1, Name="kalem 1", Price=100, Stock=200},
                  new (){Id=2, Name="kalem 2", Price=100, Stock=200},
-                      new (){Id=3, Name="kalem 3", Price=100, Stock=200}
+                      new (){Id=3, Name="kalem 3", Price=100, Stock=200},
+                      new (){Id=4, Name="kalem 4", Price=100, Stock=200},
+                 new (){Id=5, Name="kalem 5", Price=100, Stock=200},
+                      new (){Id=6, Name="kalem 6", Price=100, Stock=200}
 
         };
 

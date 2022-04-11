@@ -1,5 +1,6 @@
 ﻿using Bootcamp.API.Commands;
 using Bootcamp.API.Commands.ProductDelete;
+using Bootcamp.API.Commands.Transfer;
 using Bootcamp.API.Models;
 
 namespace Bootcamp.API.Repositories
@@ -17,5 +18,9 @@ namespace Bootcamp.API.Repositories
         Task<bool> Update(ProductUpdateCommmand updateCommmand);
 
         Task<bool> Delete(ProductDeleteCommand productDeleteCommand);
+
+        Task<bool> TransferByStoreProcedure(AccountTransferCommand accountTransferCommand);
+
+        Task<bool> Transfer(AccountTransferCommand accountTransferCommand);
     }
 }

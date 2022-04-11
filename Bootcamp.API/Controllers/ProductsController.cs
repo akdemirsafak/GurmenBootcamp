@@ -1,5 +1,6 @@
 ﻿using Bootcamp.API.Commands;
 using Bootcamp.API.Commands.ProductDelete;
+using Bootcamp.API.Commands.Transfer;
 using Bootcamp.API.Queries;
 using Bootcamp.API.Queries.GetAll;
 using MediatR;
@@ -61,6 +62,16 @@ namespace Bootcamp.API.Controllers
         {
 
             return CreateActionResult(await _mediator.Send(new ProductDeleteCommand() { Id = id }));
+        }
+
+
+        [HttpPost("transfer")]
+        public async Task<IActionResult> Transfer(AccountTransferCommand accountTransferCommand)
+        {
+
+            return CreateActionResult(await _mediator.Send(accountTransferCommand));
+
+
         }
     }
 }

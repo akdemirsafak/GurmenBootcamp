@@ -12,6 +12,7 @@ using MediatR;
 using System.Data;
 using Npgsql;
 using Bootcamp.API.Repositories;
+using Bootcamp.API.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
@@ -36,6 +37,17 @@ builder.Services.AddScoped<NotFoundProductFilter>();
 
 
 builder.Services.AddScoped<IDbConnection>(sp => new NpgsqlConnection(builder.Configuration.GetConnectionString("Postgresql")));
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<UnitOfWork>();
+builder.Services.AddScoped<IDbTransaction>(sp =>
+{
+
+    var connection = sp.GetRequiredService<IDbConnection>();
+    connection.Open();
+    return connection.BeginTransaction();
+
+
+});
 
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -44,6 +56,17 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbConnection = scope.ServiceProvider.GetRequiredService<IDbConnection>();
+
+    dbConnection.Open();
+    await Seed.Create(dbConnection);
+}
+
+
 
 
 
